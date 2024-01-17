@@ -1,0 +1,21 @@
+/*Targets the id in the html document, which affects every card inside.*/
+#PetCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 5%;
+  width: auto;
+  background-image: url(https://media.giphy.com/media/VzH4jP7ppWF8dgCxcg/giphy.gif);
+  background-repeat: repeat;
+}
+
+.petCardBody{
+/*Styling*/
+  background-color: white;
+  box-shadow: 0 8px 32px 0 lightblue;
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 1px;
+  border: 1px solid lightblue
+}
