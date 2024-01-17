@@ -237,6 +237,25 @@ const pets = [
       color: "Red",
       specialSkill: "Doesn’t get weirded out by the word “moist.”",
       type: "dino",
-      imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
+      imageUrl: "https://www.freepik.com/free-photo/isolated-happy-smiling-dog-white-background-portrait-4_39994000.htm"
     }
   ];
+
+const PetApp = document.querySelector("#PetCards");
+
+let petAppString = "";
+
+for (let i = 0; i < pets.length; i++) {
+
+    petAppString += `<div id ="petCards" style="width: 18rem;">
+    <img src=${pets[i].imageUrl} class="card-img-top" alt="...">
+    <div class="petCardBody">
+      <h5 class="card-title">Name: ${pets[i].name}</h5>
+      <p class="card-text">Special Skill: ${pets[i].specialSkill}</p>
+      <p class="card-text">Color: ${pets[i].color} </p>
+      <p class="card-text">Type of Pet: ${pets[i].type}</p>
+    </div>
+  </div>`;
+  }
+
+PetApp.innerHTML = petAppString
