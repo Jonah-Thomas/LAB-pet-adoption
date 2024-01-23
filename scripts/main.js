@@ -259,3 +259,8 @@ for (let i = 0; i < pets.length; i++) {
   }
 
 PetApp.innerHTML = petAppString
+
+const catButton = document.querySelector("#catBtn");
+const dogButton = document.querySelector("#dogBtn");
+const dinoButton = document.querySelector("#dinoBtn");
+const allPetsButton = document.querySelector("#allPetsBtn");
