@@ -259,7 +259,7 @@ for (let p = 0; p < pets.length; p++) {
     </div>
   </div>`;
   }
-
+  
 PetApp.innerHTML = petAppDiv
 }
 
@@ -281,6 +281,8 @@ cardsOnDom(typeArray);
 };
 
 //Calling our targets for user input by clicks or input of information. Here we express each Query Selector to each of their own vairables.
+PetApp.innerHTML = petAppString
+
 const catButton = document.querySelector("#catBtn");
 const dogButton = document.querySelector("#dogBtn");
 const dinoButton = document.querySelector("#dinoBtn");
@@ -356,4 +358,3 @@ PetApp.addEventListener('click', (e) => {
     cardsOnDom(pets);
   }
 });
-
