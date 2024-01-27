@@ -241,26 +241,120 @@ const pets = [
     }
   ];
 
-const PetApp = document.querySelector("#PetCards");
+//DOM Utility Function! Allows us to select the attribute of the element and render our html code from our JS.
+const PetApp = document.querySelector("#petCards");
 
-let petAppString = "";
+const cardsOnDom = (pets) => {
+let petAppDiv = "";
+for (let p = 0; p < pets.length; p++) {
 
-for (let i = 0; i < pets.length; i++) {
-
-    petAppString += `<div id ="petCards" style="width: 18rem;">
-    <img src=${pets[i].imageUrl} class="card-img-top" alt="...">
+    petAppDiv += `<div id ="petCards" style="width: 18rem;">
+    <img src=${pets[p].imageUrl} class="card-img-top" alt="...">
     <div class="petCardBody">
-      <h5 class="card-title">Name: ${pets[i].name}</h5>
-      <p class="card-text">Special Skill: ${pets[i].specialSkill}</p>
-      <p class="card-text">Color: ${pets[i].color} </p>
-      <p class="card-text">Type of Pet: ${pets[i].type}</p>
+      <h5 class="card-title">Name: ${pets[p].name}</h5>
+      <p class="card-text">Special Skill: ${pets[p].specialSkill}</p>
+      <p class="card-text">Color: ${pets[p].color} </p>
+      <p class="card-text">Type of Pet: ${pets[p].type}</p>
+      <button class="btn btn-danger" id="delete--${pets[p].id}">Delete</button>
     </div>
   </div>`;
   }
+  
+PetApp.innerHTML = petAppDiv
+}
 
+//Calls the utility function to display the information listed in the array to each card body we made.
+cardsOnDom(pets);
+
+//Filter function for each pet type. Which i assign my filter to the pet type string for each pet within the pet array, then push and return the type to the array.
+//typeString and pet are both paramaters i set for better readability of the code.
+const filter = (typeString) => {
+  const typeArray = [];
+  // the for loop here is use to iterate over the array to find the type of pet passed through the filter.
+  for (const pet of pets) {
+    if (pet.type === typeString) {
+      typeArray.push(pet);
+    }
+  }
+
+cardsOnDom(typeArray);
+};
+
+//Calling our targets for user input by clicks or input of information. Here we express each Query Selector to each of their own vairables.
 PetApp.innerHTML = petAppString
 
 const catButton = document.querySelector("#catBtn");
 const dogButton = document.querySelector("#dogBtn");
 const dinoButton = document.querySelector("#dinoBtn");
 const allPetsButton = document.querySelector("#allPetsBtn");
+
+//Each button here calls to a filter function that points to the specific pet type the user intends to partake in.
+catButton.addEventListener("click", () => {
+  const cats = filter("cat");
+  cardsOnDom(cats)
+});
+
+dogButton.addEventListener("click", () => {
+  const dogs = filter("dog");
+  cardsOnDom(dogs)
+});
+
+dinoButton.addEventListener("click", () => {
+  const dinos = filter("dino");
+  cardsOnDom(dinos)
+});
+
+//as you can see there is no need to call a filter function because when it is clicked it will simply search for all pets in the array give above.
+allPetsButton.addEventListener("click", () => {
+  cardsOnDom(pets)
+});
+
+//Creating New pets!!
+//Now we are going to select the form div we created in html by expressing it in petForm.
+const petForm = document.querySelector("#petsForm");
+
+//Im using the .preventDefault method to prevent some of the original events that could happen when using a form.
+//learned about preventDefault here https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+const createNewPet = (e) => {
+  e.preventDefault();
+
+  //here is the new object where we queryselect the values given in the form for us to push into pets
+  const newPetCardObj = {
+    id: pets.length + 1,
+    name: document.querySelector("#petName").value,
+    color: document.querySelector("#petColor").value,
+    specialSkill: document.querySelector("#petSkill").value,
+    type: document.querySelector("#petType").value,
+    image: document.querySelector("#petImage").value
+  }
+
+  //below we are pushing the values entered by the user and pushes the new object to our pets array, after we reset the form.
+  //Learned about what reset did here https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
+  pets.push(newPetCardObj);
+  cardsOnDom(pets);
+  petForm.reset();
+}
+
+// here this event listener is selecting the id of the submit button and pasing the createNewPet function into our form.
+petForm.addEventListener('submit', createNewPet);
+
+//Delete a Pet
+PetApp.addEventListener('click', (e) => {
+
+//Here we are adding a condition to check if any id includes delete. 
+  if (e.target.id.includes("delete")) {
+
+    //using the split method to find the card that matched the id that has a --
+    const [, id] = e.target.id.split("--");
+
+    //Here we add a condition that finds the index of the array
+    // I learned about findIndex from here
+    const index = pets.findIndex(e => e.id === Number(id));
+
+    //we use the splice method to modify our array and remove the card we want by clicking the delete button
+    //learned about this from here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    pets.splice(index, 1);
+
+    cardsOnDom(pets);
+  }
+});
