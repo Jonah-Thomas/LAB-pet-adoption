@@ -307,8 +307,6 @@ allPetsButton.addEventListener("click", () => {
   cardsOnDom(pets)
 });
 
-
-
 //Creating New pets!!
 //Now we are going to select the form div we created in html by expressing it in petForm.
 const petForm = document.querySelector("#petsForm");
@@ -337,10 +335,6 @@ const createNewPet = (e) => {
 
 // here this event listener is selecting the id of the submit button and pasing the createNewPet function into our form.
 petForm.addEventListener('submit', createNewPet);
-
-
-
-
 
 //Delete a Pet
 PetApp.addEventListener('click', (e) => {
