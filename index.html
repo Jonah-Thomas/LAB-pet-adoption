@@ -24,19 +24,36 @@
         </ul>-->
     </div>
 
-    <div id="PetCards"></div>
+    <div id="petCards"></div>
 
     <form class="petsForm">
+
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" id="petName" placeholder="Input your pet name here...">
       </div>
+
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+            <label class="form-label">Special Skill:</label>
+            <input type="text" class="form-control" id="petSkill" placeholder="Input your pet's special skill here...">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <div class="mb-3">
+        <label class="form-label">Favorite Color:</label>
+        <input type="text" class="form-control" id="petColor" placeholder="Input your pet's favorite color here...">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Type:</label>
+        <input type="text" class="form-control" id="petType" placeholder="Input your pet type here...">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> Your Best Pet Image:</label>
+        <input type="url" class="form-control" id="petImage" placeholder="Input your pet image url Here..." required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add your new friend!</button>
     </form>
 
     <script src="scripts/main.js" async defer></script>
