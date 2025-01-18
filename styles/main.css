@@ -1,0 +1,12 @@
+.app {
+  display: flex;
+  flex-flow: wrap;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.card {
+  margin: 10px;
+  align-items: center;
+  text-align: center;
+}
