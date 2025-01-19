@@ -317,10 +317,10 @@ showDinoCards.addEventListener("click", () => {
 });
 
 //Extra sauce: Adding background Music
-const audio = document.querySelector("#music");
-audio.addEventListener("click", () => {
-  audio.volume = 0.1;
-  audio.play();
-  
-  
-});
+let on_off = document.querySelector('.container1 .title');
+let audio = document.querySelector('.musicOn audio');
+
+// Toggle audio on/off when clicking the music icon
+on_off.onclick = function() {
+  audio.paused ? audio.play() : audio.pause();
+}
