@@ -11,10 +11,18 @@ body {
   align-content: center;
   justify-content: space-between;
 
-  animation: fadeInAnimation ease 5s;
+  animation: fadeInAnimation ease 10s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-} 
+} @keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
 
 
 .btns{
@@ -40,15 +48,4 @@ body {
   margin: 10px;
   align-items: center;
   text-align: center;
-}
-
-
-@keyframes fadeInAnimation {
-  0% {
-      opacity: 0;
-  }
-
-  100% {
-      opacity: 1;
-  }
 }
