@@ -29,7 +29,7 @@ const pets = [
     color: "Black",
     specialSkill: "Burps minimally.",
     type: "dog",
-    imageUrl: "http://cdn.akc.org/content/article-body-image/funny-pembroke_welsh_corgi.jpg"
+    imageUrl: "https://imgs.search.brave.com/ZopEylkbGSX0txRodJysPWhvD620w5-Fh-gXP3wZij4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGl0cGF0LmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMC8w/NS9EU0MwMDY0Mi0x/LTEwMjR4Njg0LTEu/d2VicA"
   },
   {
     id: 5,
@@ -85,7 +85,7 @@ const pets = [
     color: "Orange",
     specialSkill: "Can be around food without staring creepily at it.",
     type: "dino",
-    imageUrl: "http://www.cantref.com/userfiles/events/walking%20dino.jpg?w=600"
+    imageUrl: "https://imgs.search.brave.com/Kr4J44eexRmy4mGgvXR4O_6RWn22q9ABRSpYVXC6NuA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Qz/ZHZOd2pMZkp1NjhU/ZFlKV1VKRzgtMzIw/LTgwLmpwZw"
   },
   {
     id: 12,
@@ -241,15 +241,20 @@ const pets = [
   }
 ];
 
-
+//DOM Utility Functions
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+};
 
 // Query for buttons and app
 const targetingApp = document.querySelector("#app");
-const targetBtns = document.querySelector("#btns");
+const targetBtns = document.querySelector("#btn-group");
 
 // Creates create cards for each pet
+const petsOnDom = (petArray) => {
 let domString = "";
-pets.forEach((pet) => {
+petArray.forEach((pet) => {
   domString += `<div class="card" style="width: 18rem;">
   <img src="${pet.imageUrl}" class="card-img-top" alt="${pet.name}">
   <div class="card-body">
@@ -259,10 +264,63 @@ pets.forEach((pet) => {
     <p class="card-text"><small>${pet.type}</small></p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
-</div>`;
+</div>`;  
 });
+  renderToDom("#app", domString);
+}
 
-// Creates buttons that filter the pets by type
+// Function to filter pets by color
+const filter = (array, petType) => {
+  //Here we set an empty array to store the filtered pets
+  const petTypeArray = [];
+
+  // Loop through each pet in the array
+  array.forEach((pet) => {
+    // Check if the pet's color is in the array of pet colors
+    if (pet.type === petType) {
+
+      // If it is, add the pet to the new array
+      petTypeArray.push(pet);
+    }
+
+  });
+
+  // Return the new array with only the pets of the selected color(s)
+  return petTypeArray;
+};
+
+// Targeting buttons and event listeners
+const showAllCards = document.querySelector("#all-cards");
+const showCatCards = document.querySelector("#cat-cards");
+const showDogCards = document.querySelector("#dog-cards");
+const showDinoCards = document.querySelector("#dino-cards");
+
 
 // Displays the html on to the DOM
-targetingApp.innerHTML = domString;
+showAllCards.addEventListener("click", () => {
+  petsOnDom(pets);
+});
+
+showCatCards.addEventListener("click", () => {
+  const petCatTypes = filter(pets, "cat");
+  petsOnDom(petCatTypes)
+});
+
+showDogCards.addEventListener("click", () => {
+  const petDogTypes = filter(pets, "dog");
+  petsOnDom(petDogTypes);
+});
+
+showDinoCards.addEventListener("click", () => {
+  const petDinoTypes = filter(pets, "dino");
+  petsOnDom(petDinoTypes);
+});
+
+//Extra sauce: Adding background Music
+const audio = document.querySelector("#music");
+audio.addEventListener("click", () => {
+  audio.volume = 0.1;
+  audio.play();
+  
+  
+});

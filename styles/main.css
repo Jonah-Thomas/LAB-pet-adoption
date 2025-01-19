@@ -1,12 +1,54 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://imgs.search.brave.com/cvcfOYx9DUrZr6ZYa9goIxzDpi9JxzYMHJervDHnGLo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9uZW9uLWFuaW1h/bC10cmFja3MtYmxh/Y2stYmFja2dyb3Vu/ZF8xMjYyNjctMTE0/ODIuanBnP3NlbXQ9/YWlzX2h5YnJpZA');
+}
+
 .app {
   display: flex;
-  flex-flow: wrap;
+  flex-flow: row wrap;
   align-content: center;
   justify-content: space-between;
+
+  animation: fadeInAnimation ease 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+} 
+
+
+.btns{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 820px;
+}
+
+.vibes{
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  margin-left: 30px;
+  height: -30px;
+}
+.btn.btngroup {
+  margin: 10px;
 }
 
 .card {
   margin: 10px;
   align-items: center;
   text-align: center;
+}
+
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
 }
